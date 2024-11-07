@@ -4,12 +4,10 @@
 -Problemática: Mala gestión de gastos estudiantiles,familiares,empresariales
 -tipos de Usuario: Comun
 
-
 Pag-Pagina de vista
 	MU- Muestra 
 		PI- Dentro (Opciones a seleccionar)
 			PI2- Interno
-
 
 Paginas e interacciones internas 
 PAG-Inicio (Presentacion explicacion basica de la pagina)
@@ -20,18 +18,20 @@ PAG-Principal
 		PI-ingreso de Sueldo
 	MU-Priorización de Gastos x Tipo
 		PI-Definicion de Tipos y Prioridad
-	PI-Limite de gastos (Cerca del sueldo, tornarse rojo al sobrepasar sueldo)
+	MU-Limite de gastos (Cerca del sueldo, tornarse rojo al sobrepasar sueldo)
+		PI-Delimitar gasto maximo
 PAG-Gastos Presentados en un grafico
-	PI-Historial de gastos 
-		PI2-Detalle del gasto (Fecha,tipo,monto,boleta)
-	PI-Generación de cartola de gastos mensuales 
+	MU-Historial de gastos 
+		PI-Detalle del gasto (Fecha,tipo,monto,boleta)
+			PI2-Generación de cartola de gastos mensuales 
 PAG-Ingreso de Gastos (Fecha,tipo,monto,boleta)
 PAG-Galería de Boletas
-	PI-Fotos de boletas guardadas con fecha 
-		PI2-Agregar
-		PI2-Eliminar
+	MU-Fotos de boletas guardadas con fecha Por orden
+		PI-Agregar
+		PI-Eliminar
 PAG-Sector Grupal/Familiar 
 	MU-Grupo,Sueldo/Presupuesto total del grupo,Miembros
-		Pi2-Agregar Miembros al grupo 
-		PI2-Eliminar Miembros 
+		PI-Crear grupo
+			Pi2-Invitar Miembros al grupo 
+			PI2-Eliminar Miembros 
 
