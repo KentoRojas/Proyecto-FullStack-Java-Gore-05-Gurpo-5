@@ -2,34 +2,35 @@
 -Proyecto: Gestor de gastos
 -Tenolocgias usadas:
 -Problemática: Mala gestión de gastos estudiantiles,familiares,empresariales
+-tipos de Usuario: Comun
+
 
 Pag-Pagina de vista
-PI-dentro de Pagina
+PI- Dentro
 PI2- Interno
+MU- Muestra 
 
 Paginas e interacciones internas 
-PAG-Inicio
-PAG-Registro
-PAG-Login
-PAG-Principal con el Sueldo
-	PI-ingreso de Sueldo
-	PI-Priorización de Gastos x Tipo
-		PI2-Definicion de Tipos y Prioridad
+PAG-Inicio (Presentacion explicacion basica de la pagina)
+PAG-Registro (Nombre,apellido,correo,Contraseña,Confirmarcontraseña)
+PAG-Login (Correo,Contraseña)
+PAG-Principal 
+	MU-Sueldo
+		PI-ingreso de Sueldo
+	MU-Priorización de Gastos x Tipo
+		PI-Definicion de Tipos y Prioridad
 	PI-Limite de gastos (Cerca del sueldo, tornarse rojo al sobrepasar sueldo)
 PAG-Gastos Presentados en un grafico
-	PI-Historial
-		PI2-Detalle del gasto 
+	PI-Historial de gastos 
+		PI2-Detalle del gasto (Fecha,tipo,monto,boleta)
 	PI-Generación de cartola de gastos mensuales 
-PAG-Ingreso de Gastos 
-	PI-Dia-Mes
+PAG-Ingreso de Gastos (Fecha,tipo,monto,boleta)
 PAG-Galería de Boletas
 	PI-Fotos de boletas guardadas con fecha 
 		PI2-Agregar
-		PI2-Eliminas
-PAG-Recomendaciones de Inversión ------Discutible
-	PI-Explicación de inversiones 
-	PI-inversiones
-		PI2-Detalle sobre inversiones
+		PI2-Eliminar
 PAG-Sector Grupal/Familiar 
-	Pi-Agregar Miembros al grupo + Presupuesto
-	PI-Eliminar Miembros 
+	MU-Grupo,Sueldo/Presupuesto total del grupo,Miembros
+		Pi2-Agregar Miembros al grupo 
+		PI2-Eliminar Miembros 
+
