@@ -6,9 +6,10 @@
 
 
 Pag-Pagina de vista
-PI- Dentro
-PI2- Interno
-MU- Muestra 
+	MU- Muestra 
+		PI- Dentro (Opciones a seleccionar)
+			PI2- Interno
+
 
 Paginas e interacciones internas 
 PAG-Inicio (Presentacion explicacion basica de la pagina)
