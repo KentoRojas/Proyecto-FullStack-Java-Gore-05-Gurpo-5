@@ -1,9 +1,13 @@
-Aplicación de registros de gastos/Contabilidad
-Problemática -Mala gestión de gastos estudiantiles,familiares,empresariales
+-Objetivo Especifico: Aplicación de registros de gastos/Contabilidad
+-Proyecto: Gestor de gastos
+-Tenolocgias usadas:
+-Problemática: Mala gestión de gastos estudiantiles,familiares,empresariales
+
 Pag-Pagina de vista
 PI-dentro de Pagina
 PI2- Interno
 
+Paginas e interacciones internas 
 PAG-Inicio
 PAG-Registro
 PAG-Login
