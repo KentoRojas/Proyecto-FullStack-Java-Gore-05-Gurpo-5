@@ -1,82 +1,80 @@
 package com.grupo5.modelos;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
 @Entity
+@Table(name = "Presupuestos")
 public class Presupuesto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_presupuesto;
+    @Column(name = "id_presupuesto")
+    private Long id_presupuesto;
 
+    @NotNull(message = "El monto máximo no puede estar vacío")
+    @DecimalMin(value = "0.0", inclusive = false, message = "El monto máximo debe ser mayor que cero")
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal monto_maximo;
+    private BigDecimal montoMaximo;
 
+    @NotNull(message = "La fecha de inicio no puede estar vacía")
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date fecha_inicio;
+    @Column(name = "fecha_inicio", nullable = false)
+    private Date fechaInicio;
 
+    @NotNull(message = "La fecha de fin no puede estar vacía")
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date fecha_fin;
+    @Column(name = "fecha_fin", nullable = false)
+    private Date fechaFin;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuarios")
+    // Relación con Usuario (Muchos presupuestos para un usuario)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuarios", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_grupos")
+    // Relación con Grupo (Muchos presupuestos para un grupo)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_grupos", nullable = false)
     private Grupo grupo;
 
-    // Getters y Setters
+    // Constructor vacío
+    public Presupuesto() {}
 
-    public int getId_presupuesto() {
+    // Getters y Setters
+    public Long getId_presupuesto() {
         return id_presupuesto;
     }
-
-    public void setId_presupuesto(int id_presupuesto) {
+    public void setId_presupuesto(Long id_presupuesto) {
         this.id_presupuesto = id_presupuesto;
     }
 
-    public BigDecimal getMonto_maximo() {
-        return monto_maximo;
+    public BigDecimal getMontoMaximo() {
+        return montoMaximo;
+    }
+    public void setMontoMaximo(BigDecimal montoMaximo) {
+        this.montoMaximo = montoMaximo;
     }
 
-    public void setMonto_maximo(BigDecimal monto_maximo) {
-        this.monto_maximo = monto_maximo;
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public Date getFechaFin() {
+        return fechaFin;
     }
-
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
-    }
-
-    public Date getFecha_fin() {
-        return fecha_fin;
-    }
-
-    public void setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -84,7 +82,6 @@ public class Presupuesto {
     public Grupo getGrupo() {
         return grupo;
     }
-
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }

@@ -11,31 +11,32 @@ public class MiembroGrupoId implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "id_usuario")
-    private int idUsuario;
+    private Long idUsuario;
 
     @Column(name = "id_grupo")
-    private int idGrupo;
+    private Long idGrupo;
 
+    // Constructor vacío
     public MiembroGrupoId() {}
 
-    public MiembroGrupoId(int idUsuario, int idGrupo) {
+    // Constructor con parámetros
+    public MiembroGrupoId(Long idUsuario, Long idGrupo) {
         this.idUsuario = idUsuario;
         this.idGrupo = idGrupo;
     }
 
-    public int getIdUsuario() {
+    // Getters y Setters
+    public Long getIdUsuario() {
         return idUsuario;
     }
-
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public int getIdGrupo() {
+    public Long getIdGrupo() {
         return idGrupo;
     }
-
-    public void setIdGrupo(int idGrupo) {
+    public void setIdGrupo(Long idGrupo) {
         this.idGrupo = idGrupo;
     }
 
@@ -44,7 +45,7 @@ public class MiembroGrupoId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MiembroGrupoId that = (MiembroGrupoId) o;
-        return idUsuario == that.idUsuario && idGrupo == that.idGrupo;
+        return Objects.equals(idUsuario, that.idUsuario) && Objects.equals(idGrupo, that.idGrupo);
     }
 
     @Override

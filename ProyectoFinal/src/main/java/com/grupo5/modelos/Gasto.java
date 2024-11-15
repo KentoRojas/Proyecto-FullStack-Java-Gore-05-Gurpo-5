@@ -1,87 +1,113 @@
 package com.grupo5.modelos;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
 @Entity
+@Table(name = "Gastos")
 public class Gasto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_Gasto;
+    @Column(name = "id_Gasto")
+    private Long idGasto;
 
+    @NotNull(message = "El monto no puede estar vacío")
+    @DecimalMin(value = "0.0", inclusive = false, message = "El monto debe ser mayor que cero")
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal monto;
 
+    @NotNull(message = "La fecha no puede estar vacía")
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "Tipo", nullable = false)
+    // Relación con Categoria (Un gasto pertenece a una categoría)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipo", nullable = false)
     private Categoria tipo;
 
-    @ManyToOne
+    // Relación con Usuario (Un gasto pertenece a un usuario)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuarios", nullable = false)
     private Usuario usuario;
 
+    // Ruta o URL de la imagen de la boleta
+    @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres")
     private String boleta;
 
-	public int getId_Gasto() {
-		return id_Gasto;
-	}
+    // Descripción adicional del gasto en la boleta
+    @Column(length = 500)
+    private String descripcion;
 
-	public void setId_Gasto(int id_Gasto) {
-		this.id_Gasto = id_Gasto;
-	}
+    // Fecha de creación de la boleta
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaCreacionBoleta;
 
-	public BigDecimal getMonto() {
-		return monto;
-	}
+    // Constructor vacío
+    public Gasto() {
+        this.fechaCreacionBoleta = new Date(); // Se establece la fecha actual por defecto
+    }
 
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
+    // Getters y Setters
+    public Long getIdGasto() {
+        return idGasto;
+    }
+    public void setIdGasto(Long idGasto) {
+        this.idGasto = idGasto;
+    }
 
-	public Date getFecha() {
-		return fecha;
-	}
+    public BigDecimal getMonto() {
+        return monto;
+    }
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
+    }
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+    public Date getFecha() {
+        return fecha;
+    }
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
-	public Categoria getTipo() {
-		return tipo;
-	}
+    public Categoria getTipo() {
+        return tipo;
+    }
+    public void setTipo(Categoria tipo) {
+        this.tipo = tipo;
+    }
 
-	public void setTipo(Categoria tipo) {
-		this.tipo = tipo;
-	}
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+    public String getBoleta() {
+        return boleta;
+    }
+    public void setBoleta(String boleta) {
+        this.boleta = boleta;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public String getBoleta() {
-		return boleta;
-	}
-
-	public void setBoleta(String boleta) {
-		this.boleta = boleta;
-	}
+    public Date getFechaCreacionBoleta() {
+        return fechaCreacionBoleta;
+    }
+    public void setFechaCreacionBoleta(Date fechaCreacionBoleta) {
+        this.fechaCreacionBoleta = fechaCreacionBoleta;
+    }
 }
+

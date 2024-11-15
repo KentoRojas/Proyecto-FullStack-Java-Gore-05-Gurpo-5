@@ -1,66 +1,90 @@
 package com.grupo5.modelos;
 
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
 @Entity
+@Table(name = "Boletas")
 public class Boleta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_boleta;
+    @Column(name = "id_boleta")
+    private Long idBoleta;
 
-    @Column(nullable = false, length = 255)
+    // Ruta de la imagen en el servidor
+    @NotBlank(message = "La imagen no puede estar vacía")
+    @Size(max = 255, message = "La ruta de la imagen no puede tener más de 255 caracteres")
+    @Column(nullable = false)
     private String imagen;
 
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date fecha_subida;
+    // Fecha en la que se subió la boleta al sistema
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha_subida", nullable = false)
+    private Date fechaSubida;
 
-    @ManyToOne
+    // Fecha de emisión de la boleta
+    @Temporal(TemporalType.DATE)
+    @NotNull(message = "La fecha de emisión no puede estar vacía")
+    @Column(name = "fecha_emision", nullable = false)
+    private Date fechaEmision;
+
+    // Descripción adicional de la boleta
+    @Size(max = 500, message = "La descripción no puede tener más de 500 caracteres")
+    private String descripcion;
+
+    // Relación con Gasto (una boleta está asociada a un gasto)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Gasto", nullable = false)
     private Gasto gasto;
 
-    // Getters y Setters
-
-    public int getId_boleta() {
-        return id_boleta;
+    // Constructor vacío
+    public Boleta() {
+        this.fechaSubida = new Date(); // Se establece la fecha actual por defecto al subir la boleta
     }
 
-    public void setId_boleta(int id_boleta) {
-        this.id_boleta = id_boleta;
+    // Getters y Setters
+    public Long getIdBoleta() {
+        return idBoleta;
+    }
+    public void setIdBoleta(Long idBoleta) {
+        this.idBoleta = idBoleta;
     }
 
     public String getImagen() {
         return imagen;
     }
-
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
-    public Date getFecha_subida() {
-        return fecha_subida;
+    public Date getFechaSubida() {
+        return fechaSubida;
+    }
+    public void setFechaSubida(Date fechaSubida) {
+        this.fechaSubida = fechaSubida;
     }
 
-    public void setFecha_subida(Date fecha_subida) {
-        this.fecha_subida = fecha_subida;
+    public Date getFechaEmision() {
+        return fechaEmision;
+    }
+    public void setFechaEmision(Date fechaEmision) {
+        this.fechaEmision = fechaEmision;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Gasto getGasto() {
         return gasto;
     }
-
     public void setGasto(Gasto gasto) {
         this.gasto = gasto;
     }
