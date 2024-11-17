@@ -1,34 +1,39 @@
 package com.grupo5.Controladores;
 
-import com.grupo5.Repositorios.RepositorioUsuario;
-import com.grupo5.modelos.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import com.grupo5.Repositorios.RepositorioUsuario;
+import com.grupo5.modelos.Usuario;
 
 @Controller
-public class controladorLogin {
+public class ControladorLogin {
 
     @Autowired
     private RepositorioUsuario repositorioUsuario;
 
+    // Mostrar el formulario de login
     @GetMapping("/login")
-    public String mostrarFormularioLogin() {
-        return "login.jsp"; // puse login pero puede ser inicio o algun otro, es de referencia
+    public String mostrarFormularioLogin(Model modelo) {
+        modelo.addAttribute("usuario", new Usuario());
+        return "login"; // Nombre del archivo que tenga las vistas
     }
 
-    @PostMapping("/login")
-    public String procesarLogin(@RequestParam("nombreUsuario") String nombreUsuario,
-                                 @RequestParam("password") String password,
-                                 Model modelo) {
-        Usuario usuario = repositorioUsuario.findByNombreUsuario(nombreUsuario).orElse(null);
+    // Procesar el login
+    @PostMapping("/procesarLogin")
+    public String procesarLogin(@ModelAttribute("usuario") Usuario usuario, Model modelo) {
+        Usuario usuarioExistente = repositorioUsuario.findByCorreo(usuario.getCorreo());
 
-        if (usuario != null && usuario.getPassword().equals(password)) {
-            return "redirect:/inicio"; // Página principal después del login
+        if (usuarioExistente != null && usuarioExistente.getPassword().equals(usuario.getPassword())) {
+            // Credenciales correctas
+            return "redirect:/inicio"; // Redirige al inicio
         } else {
-            modelo.addAttribute("error", "Credenciales incorrectas");
-            return "login.jsp"; // Volver a la página de login con un mensaje de error
+            // Credenciales incorrectas
+            modelo.addAttribute("error", "Correo o contraseña incorrectos.");
+            return "login"; // Muestra de nuevo el formulario de login con el mensaje de error
         }
     }
 }
