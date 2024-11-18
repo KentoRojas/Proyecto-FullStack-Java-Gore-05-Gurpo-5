@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Sueldos")
@@ -21,11 +21,11 @@ public class Sueldo {
 
     @Column(name = "fechaIngreso")
     @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
 
     @Column(name = "fecha_actualizacion")
     @Temporal(TemporalType.DATE)
-    private Date fechaActualizacion;
+    private LocalDate fechaActualizacion;
 
     // Relación con Usuario (Muchos sueldos para un usuario)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,7 +34,6 @@ public class Sueldo {
 
     // Constructor vacío
     public Sueldo() {
-        this.fechaActualizacion = new Date(); // Fecha de actualización por defecto
     }
 
     // Getters y Setters
@@ -52,17 +51,17 @@ public class Sueldo {
         this.monto = monto;
     }
 
-    public Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getFechaActualizacion() {
+    public LocalDate getFechaActualizacion() {
         return fechaActualizacion;
     }
-    public void setFechaActualizacion(Date fechaActualizacion) {
+    public void setFechaActualizacion(LocalDate fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
 

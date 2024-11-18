@@ -1,6 +1,6 @@
 package com.grupo5.Repositorios;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -14,10 +14,10 @@ public interface RepositorioSueldo extends CrudRepository<Sueldo, Long> {
     List<Sueldo> findByUsuario(Usuario usuario);
 
     // Buscar sueldos por un rango de fechas para un usuario específico
-    List<Sueldo> findByUsuarioAndFechaIngresoBetween(Usuario usuario, Date fechaInicio, Date fechaFin);
+    List<Sueldo> findByUsuarioAndFechaIngresoBetween(Usuario usuario, LocalDate  fechaInicio, LocalDate  fechaFin);
 
     // Buscar sueldos por la última fecha de actualización
-    List<Sueldo> findByFechaActualizacion(Date fechaActualizacion);
+    List<Sueldo> findByFechaActualizacion(LocalDate  fechaActualizacion);
 
     // Buscar el último sueldo ingresado para un usuario
     Sueldo findTopByUsuarioOrderByFechaIngresoDesc(Usuario usuario);
