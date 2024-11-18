@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Boletas</title>
+    <link rel="stylesheet" href="estilo/index.css">
+</head>
+<body>
+    <div class="contenedor">
+        <header class="encabezado">
+            <h1 class="titulo">Galería de Boletas</h1>
+            <img class="logo" src="logo.png" alt="Logo">
+        </header>
+
+        <div class="filtros">
+            <input type="text" id="busquedaDescripcion" placeholder="Buscar por descripción...">
+            <button class="boton-buscar" onclick="buscar()">Buscar</button>
+
+            <input type="date" id="filtroFecha">
+            <button class="boton-buscar-fecha" onclick="buscarPorFecha()">Buscar por Fecha</button>
+        </div>
+
+        <div class="subir-imagen">
+            <input type="file" id="selectorImagen" accept="image/*">
+            <textarea id="descripcionImagen" placeholder="Escribe una descripción..." required></textarea>
+            <button class="boton-subir" onclick="subirImagen()">Subir Imagen</button>
+        </div>
+
+        <div class="galeria" id="galeria">
+            <!-- Aquí se mostrarán las imágenes subidas -->
+        </div>
+
+        <!-- Contenedor de paginación -->
+        <div id="paginacion"></div>
+
+        <div id="imagenGrande" class="imagen-grande">
+            <span class="cerrar" onclick="cerrarVistaGrande()">×</span>
+            <img id="imagenGrandeImg" src="" alt="Imagen grande">
+            <button class="flecha izquierda" onclick="navegarImagen(-1)">&#8592;</button>
+            <button class="flecha derecha" onclick="navegarImagen(1)">&#8594;</button>
+
+            <!-- Botones Borrar y Descargar -->
+            <div id="botonesImagenGrande" style="display: none;">
+                <button class="boton-borrar" onclick="borrarImagen()">Borrar</button>
+                <button class="boton-descargar" onclick="descargarImagen()">Descargar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

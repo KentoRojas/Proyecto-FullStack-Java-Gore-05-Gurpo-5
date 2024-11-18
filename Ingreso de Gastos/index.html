@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <section class="pag3" id="pag3">
+
+        <div class="content">
+
+            <p class="tituloPag">Ingreso de Gastos</p>
+            <main class="historialGastos">
+                
+                <div class="btnPlus">
+                    <button id="abrirRegistroGasto" class="ei--plus"></button>
+                </div>
+                
+                <div class="historial">
+                    <ul id="registroHistorial"></ul>
+                </div>
+            </main>
+
+            <div id="modalRegistrarGasto" class="modalRegistrarGasto">
+
+                <div class="modalRegistrarGasto-content">
+                    <span id="cerrarRegistroGasto" class="cerrarRegistroGasto">&times;</span>
+                    <form id="formularioRegistroGasto">
+                        <p id="heading">Registrar Gasto</p>
+
+                        <label for="expenseName">Nombre del gasto:</label>
+                        <div class="field" class="grupoFormularioRegistroGasto">
+                            
+                            <input id="expenseName" autocomplete="off" class="input-field" type="text">
+                        </div>
+
+                        
+                        <label for="expenseType">Tipo de Gasto:</label>
+                        <div class="field" class="grupoFormularioRegistroGasto">
+                            <select id="expenseType" class="input-field" name="expenseType" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="Comida">Comida🍔</option>
+                                <option value="Transporte">Transporte🚌</option>
+                                <option value="Entretenimiento">Entretenimiento🎉</option>
+                                <option value="Basicos">Basicos📝</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <label for="expenseDate">Fecha del Gasto:</label>
+                        <div class="field" class=formularioRegistroGasto>
+                            <input type="date" id="expenseDate" class="input-field" name="expenseDate" required>
+                        </div>
+
+                        <label for="expenseImage">Subir Imagen</label>
+                        <div  class=formularioRegistroGasto>
+                            <input type="file" id="expenseImage" name="expenseImage" accept="image/*">
+                        </div>
+
+                        <div class="btnRegistrarGasto">
+                            <button type="submit" class="button2">Registrar Gasto</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Modal para la imagen -->
+            <div id="imageModal" class="modal">
+                <div class="modal-content">
+                <span id="closeImageModal" class="cerrarRegistroGasto">&times;</span>
+                <img id="modalImage" src="" alt="Imagen del Gasto" />
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

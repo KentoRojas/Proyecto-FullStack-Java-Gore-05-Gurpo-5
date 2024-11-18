@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Página Prueba</title>
+</head>
+<body>
+
+    <!-- Barra de Navegación Lateral -->
+    <nav class="sidebar">
+        <div class="head-menu">
+            <a href="#pag1"><img src="img/MonEvo.png" alt="">
+        </div>
+        <div class="main-menu">
+            <ul>
+            <li><a href="#normal1"><span class="gridicons--stats-alt-2"></span></a></li>
+            <li><a href="#pag2"><span class="flowbite--clipboard-list-outline"></span></a></li>
+            <li><a href="#"><span class="flowbite--receipt-solid"></span></a></li>
+            <li><a href="#"><span class="carbon--group"></span></a></li>
+            <li><a href="#"><span class="carbon--user"></span></a></li>
+            </ul>
+        </div>
+        
+    </nav>
+
+    <div class="content-container">
+
+        <section class="pag" id="pag1">
+            <div class="content-pag">
+                <div class="saldo">
+                    Saldo: <span id="saldo">$0</span>
+                    <button id="toggle-saldo" class="iconoir--eye-solid" onclick="toggleSaldo()"></button>
+                </div>
+                
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <h3>Ingrese el monto</h3>
+                        <input type="number" id="monto" placeholder="Ingrese monto" />
+                        <button class="btn-saldo" id="btn-confirmar"  onclick="sumarSaldo()">Confirmar</button>
+                        <button class="btn-saldo" id="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                    </div>
+                </div>
+                
+                <span class="ei--plus" onclick="mostrarInput()"></span>
+                
+                
+            </div>
+
+        <div class="drawer" id="drawer1">
+            
+            <canvas id="myChart" height="300" width="400"></canvas>
+        </div>
+
+
+        <div class="drawer" id="drawer2">
+            <p>Cajón 2</p>
+        </div>
+
+        </section>
+
+        <section class="normal" id="normal1">
+        <h2>Hola</h2>
+        </section>
+
+        <section class="pag2" id="pag2">
+        <div class="content-pag2">
+            <div class="historial">
+                historial
+            </div>
+            <div class="grafico">
+                grafico
+            </div>
+        </div>
+        </section>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
