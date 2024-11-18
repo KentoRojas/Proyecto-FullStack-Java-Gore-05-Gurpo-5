@@ -1,6 +1,9 @@
 package com.grupo5.Servicios;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
+=======
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +41,11 @@ public class ServicioSueldo {
     }
 
     // Método para obtener sueldos por un rango de fechas para un usuario
+<<<<<<< HEAD
     public List<Sueldo> obtenerSueldosPorUsuarioYFecha(Usuario usuario, LocalDate  fechaInicio, LocalDate  fechaFin) {
+=======
+    public List<Sueldo> obtenerSueldosPorUsuarioYFecha(Usuario usuario, Date fechaInicio, Date fechaFin) {
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
         return repositorioSueldo.findByUsuarioAndFechaIngresoBetween(usuario, fechaInicio, fechaFin);
     }
 
@@ -57,7 +64,11 @@ public class ServicioSueldo {
         if (sueldoExistente != null) {
             sueldoExistente.setMonto(sueldoActualizado.getMonto());
             sueldoExistente.setFechaIngreso(sueldoActualizado.getFechaIngreso());
+<<<<<<< HEAD
             sueldoExistente.setFechaActualizacion(LocalDate.now());
+=======
+            sueldoExistente.setFechaActualizacion(new Date());
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
             return repositorioSueldo.save(sueldoExistente);
         }
         return null; // Retorna null si el sueldo no existe

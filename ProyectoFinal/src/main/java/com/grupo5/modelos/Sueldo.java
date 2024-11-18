@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
+<<<<<<< HEAD
 import java.time.LocalDate;
+=======
+import java.util.Date;
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
 
 @Entity
 @Table(name = "Sueldos")
@@ -21,11 +25,19 @@ public class Sueldo {
 
     @Column(name = "fechaIngreso")
     @Temporal(TemporalType.DATE)
+<<<<<<< HEAD
     private LocalDate fechaIngreso;
 
     @Column(name = "fecha_actualizacion")
     @Temporal(TemporalType.DATE)
     private LocalDate fechaActualizacion;
+=======
+    private Date fechaIngreso;
+
+    @Column(name = "fecha_actualizacion")
+    @Temporal(TemporalType.DATE)
+    private Date fechaActualizacion;
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
 
     // Relación con Usuario (Muchos sueldos para un usuario)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +46,10 @@ public class Sueldo {
 
     // Constructor vacío
     public Sueldo() {
+<<<<<<< HEAD
+=======
+        this.fechaActualizacion = new Date(); // Fecha de actualización por defecto
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
     }
 
     // Getters y Setters
@@ -51,6 +67,7 @@ public class Sueldo {
         this.monto = monto;
     }
 
+<<<<<<< HEAD
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
@@ -62,6 +79,19 @@ public class Sueldo {
         return fechaActualizacion;
     }
     public void setFechaActualizacion(LocalDate fechaActualizacion) {
+=======
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+    public void setFechaActualizacion(Date fechaActualizacion) {
+>>>>>>> 78c78b8f66f3228de458497368ad1bfa23742559
         this.fechaActualizacion = fechaActualizacion;
     }
 
