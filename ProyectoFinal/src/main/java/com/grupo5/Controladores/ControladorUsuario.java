@@ -41,22 +41,24 @@ public class ControladorUsuario {
 	@GetMapping("/registro")
 	public String mostrarFormularioRegistro(Model modelo) {
 		modelo.addAttribute("usuario", new Usuario());
-		return "registro";
+		return "login";
 	}
 	
 	//Procesar el registro
 	@PostMapping("/procesaRegistro")
 	public String registrarUsuario(@ModelAttribute("usuario") Usuario usuario, Model modelo) {
 		// Verifica si el campo password está vacío antes de guardar
+		System.out.println("hola");
 	    if (usuario.getPassword() == null || usuario.getPassword().isEmpty()) {
 	        modelo.addAttribute("error", "La contraseña no puede estar vacía");
-	        return "registro";
+	        return "login";
 	    }
 		Usuario registrado = servicioUsuario.registrarUsuario(usuario);
 		if(registrado == null) {
 			modelo.addAttribute("error", "El correo o nombre de usuario ya existe");
-			return "registro";
+			return "login";
 		}
+		
 		return "redirect:/";
 	}
 
