@@ -18,9 +18,14 @@ public class ControladorSueldo {
 
 	@Autowired
 	private ServicioSueldo servicioSueldo;
+<<<<<<< HEAD
 	
 
     // Procesar el registro de un sueldo
+=======
+
+	// Procesar el registro de un sueldo
+>>>>>>> e935239 (Agregando vista de inicio al proyecto)
     @PostMapping("/sueldo")
     public String procesarRegistroSueldo(@ModelAttribute("sueldo") Sueldo sueldo, HttpSession session, Model modelo) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");

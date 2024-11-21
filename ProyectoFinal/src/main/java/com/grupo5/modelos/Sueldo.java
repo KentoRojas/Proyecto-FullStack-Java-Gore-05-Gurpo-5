@@ -34,6 +34,19 @@ public class Sueldo {
     // Constructor vacío
     public Sueldo() {
     }
+    
+    // Asignar automáticamente la fecha de ingreso al crear el registro
+    @PrePersist
+    protected void onCreate() {
+        this.fechaIngreso = LocalDate.now(); // Fecha actual al registrar
+        this.fechaActualizacion = LocalDate.now(); // También inicializa la fecha de actualización
+    }
+
+    // Actualizar la fecha de actualización al modificar el registro
+    @PreUpdate
+    protected void onUpdate() {
+        this.fechaActualizacion = LocalDate.now(); // Fecha actual al actualizar
+    }
 
     // Asignar automáticamente la fecha de ingreso al crear el registro
     @PrePersist

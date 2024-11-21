@@ -44,6 +44,10 @@
         </div>
     </div>
 </body>
+<<<<<<< HEAD
 </html>
 
     
+=======
+</html>
+>>>>>>> e935239 (Agregando vista de inicio al proyecto)
