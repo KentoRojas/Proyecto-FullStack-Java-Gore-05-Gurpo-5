@@ -32,11 +32,12 @@ public class ControladorUsuario {
         }
 
         // Obtener el último sueldo ingresado por el usuario
-        Sueldo sueldo = servicioSueldo.obtenerUltimoSueldoPorUsuario(usuario);
-        modelo.addAttribute("sueldo", sueldo);
+        Sueldo ultimoSueldo = servicioSueldo.obtenerUltimoSueldoPorUsuario(usuario);
+        modelo.addAttribute("sueldo", ultimoSueldo);
 
-        return "inicio"; // Retorna la vista "inicio.jsp"
+        return "inicio";
     }
+
 
     // Mostrar la vista de login/registro
     @GetMapping("/")
