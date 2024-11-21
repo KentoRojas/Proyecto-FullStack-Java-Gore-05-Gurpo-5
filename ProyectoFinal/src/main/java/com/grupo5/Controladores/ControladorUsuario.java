@@ -3,9 +3,9 @@ package com.grupo5.Controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grupo5.Servicios.ServicioSueldo;
 import com.grupo5.Servicios.ServiciosUsuario;
@@ -17,12 +17,13 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ControladorUsuario {
 
-	@Autowired
-	private ServiciosUsuario servicioUsuario;
-	@Autowired
+    @Autowired
+    private ServiciosUsuario servicioUsuario;
+
+    @Autowired
     private ServicioSueldo servicioSueldo;
-	
-	// Mostrar la vista de inicio después del login
+
+    // Mostrar la vista de inicio después del login
     @GetMapping("/inicio")
     public String mostrarInicio(HttpSession session, Model modelo) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
@@ -34,62 +35,79 @@ public class ControladorUsuario {
         Sueldo sueldo = servicioSueldo.obtenerUltimoSueldoPorUsuario(usuario);
         modelo.addAttribute("sueldo", sueldo);
 
-        return "inicio";
+        return "inicio"; // Retorna la vista "inicio.jsp"
     }
-	
-	// Mostrar el formulario de registro
-	@GetMapping("/registro")
-	public String mostrarFormularioRegistro(Model modelo) {
-		modelo.addAttribute("usuario", new Usuario());
-		return "login";
-	}
-	
-	//Procesar el registro
-	@PostMapping("/procesaRegistro")
-	public String registrarUsuario(@ModelAttribute("usuario") Usuario usuario, Model modelo) {
-		// Verifica si el campo password está vacío antes de guardar
-		System.out.println("hola");
-	    if (usuario.getPassword() == null || usuario.getPassword().isEmpty()) {
-	        modelo.addAttribute("error", "La contraseña no puede estar vacía");
-	        return "login";
-	    }
-		Usuario registrado = servicioUsuario.registrarUsuario(usuario);
-		if(registrado == null) {
-			modelo.addAttribute("error", "El correo o nombre de usuario ya existe");
-			return "login";
-		}
-		
-		return "redirect:/";
-	}
 
-	 // Mostrar el formulario de login
+    // Mostrar la vista de login/registro
     @GetMapping("/")
-    public String mostrarFormularioLogin(Model modelo) {
+    public String mostrarFormulario(Model modelo) {
         modelo.addAttribute("usuario", new Usuario());
+        modelo.addAttribute("mostrarRegistro", false); // Por defecto, muestra el login
         return "login";
+    }
+
+    // Procesar el registro
+    @PostMapping("/procesaRegistro")
+    public String registrarUsuario(@ModelAttribute("usuario") Usuario usuario, Model modelo) {
+        String error = validarRegistro(usuario);
+        if (error != null) {
+            modelo.addAttribute("errorRegistro", error);
+            modelo.addAttribute("mostrarRegistro", true);
+            return "login";
+        }
+
+        Usuario registrado = servicioUsuario.registrarUsuario(usuario);
+        if (registrado == null) {
+            modelo.addAttribute("errorRegistro", "El correo o el nombre de usuario ya están registrados");
+            modelo.addAttribute("mostrarRegistro", true);
+            return "login";
+        }
+
+        return "redirect:/"; // Redirigir al login tras un registro exitoso
     }
 
     // Procesar el login
     @PostMapping("/procesaLogin")
     public String procesarLogin(@ModelAttribute("usuario") Usuario usuario, Model modelo, HttpSession session) {
-        // Buscar el usuario por correo
-        Usuario usuarioExistente = servicioUsuario.obtenerUsuarioPorCorreo(usuario.getCorreo());
-
-        // Validar credenciales
-        if (usuarioExistente != null && usuarioExistente.getPassword().equals(usuario.getPassword())) {
-            // Establecer el usuario en la sesión
-            session.setAttribute("usuarioLogueado", usuarioExistente);
-            return "redirect:/inicio"; // Redirigir a la página de inicio
-        } else {
-            modelo.addAttribute("error", "Correo o contraseña incorrectos");
-            return "login";
+        Usuario usuarioLogueado = servicioUsuario.obtenerUsuarioPorCorreo(usuario.getCorreo());
+        if (usuarioLogueado != null && usuarioLogueado.getPassword().equals(usuario.getPassword())) {
+            session.setAttribute("usuarioLogueado", usuarioLogueado);
+            return "redirect:/inicio"; // Redirigir al inicio
         }
+
+        modelo.addAttribute("errorLogin", "Correo o contraseña incorrectos");
+        modelo.addAttribute("mostrarRegistro", false);
+        return "login";
     }
 
     // Cerrar sesión
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate(); 
-        return "redirect:/"; 
+        session.invalidate();
+        return "redirect:/";
+    }
+
+    // Método de validación de registro
+    private String validarRegistro(Usuario usuario) {
+        if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
+            return "El nombre no puede estar vacío";
+        }
+        if (usuario.getNombreUsuario() == null || usuario.getNombreUsuario().isEmpty()) {
+            return "El nombre de usuario no puede estar vacío";
+        }
+        if (usuario.getCorreo() == null || usuario.getCorreo().isEmpty()) {
+            return "El correo no puede estar vacío";
+        }
+        if (!usuario.getCorreo().contains("@")) {
+            return "El correo debe ser válido";
+        }
+        if (usuario.getPassword() == null || usuario.getPassword().isEmpty()) {
+            return "La contraseña no puede estar vacía";
+        }
+        if (usuario.getPassword().length() < 8) {
+            return "La contraseña debe tener al menos 8 caracteres";
+        }
+        return null; // Sin errores
     }
 }
+
