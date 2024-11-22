@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuestos Compartidos</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <div id="overlay"></div>
+    <div class="container">
+        <!-- Titulo y Logo -->
+        <header>
+            <h1>Presupuestos Compartidos</h1>
+            <img src="logo.png" alt="Logo" id="logo">
+        </header>
+
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Buscar persona...">
+            <button onclick="buscarPersona()">Buscar</button>
+        </div>
+
+        <!-- Botón para crear grupo -->
+        <button id="btn-crear-grupo" onclick="mostrarFormulario()">Crear Grupo</button>
+
+        <!-- Formulario para crear grupo (inicialmente oculto) -->
+        <div id="formulario">
+            <div class="formulario-contenedor">
+                <div class="formulario-etiquetas">
+                    <label>Nombre del Grupo:</label>
+                    <label>Dueño del Grupo:</label>
+                    <label>Integrantes:</label>
+                    <label>Saldo:</label>
+                </div>
+                <div class="formulario-inputs">
+                    <input type="text" id="nombre-grupo" placeholder="Nombre del grupo">
+                    <input type="text" id="nombre-dueno" value="Juan Pérez" readonly>
+                    
+                    <div class="integrantes-container">
+                        <input type="text" id="buscar-integrante" placeholder="Nombre del integrante">
+                        <button onclick="agregarIntegrante()">Agregar</button>
+                    </div>
+                    <div id="lista-integrantes"></div>
+                    
+                    <input type="number" id="saldo" placeholder="Saldo inicial">
+                </div>
+            </div>
+            <div class="botones-formulario">
+                <button onclick="crearGrupo()">Crear Grupo</button>
+                <button onclick="resetFormulario()">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Sección de los grupos creados (inicialmente vacío) -->
+        <div id="grupos-creados"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
