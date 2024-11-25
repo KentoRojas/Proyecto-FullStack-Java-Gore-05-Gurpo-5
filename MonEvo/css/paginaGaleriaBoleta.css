@@ -1,0 +1,105 @@
+.pagGaleriaBoleta {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(90deg, #002047, #082951, #0F315B, #1E426F, #2D5383, #3B6397);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientMove 30s linear infinite;
+    border-radius: 92px;
+    border-top: 20px solid aliceblue;
+}
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.pagGaleriaBoleta {
+    display: flex;
+    justify-content: center;
+    z-index: 0;
+}
+
+.contentGaleriaBoleta{
+    background: rgba(240, 248, 255, 0.368);
+    width: 90%;
+    height: 100vh;
+    border: 20px solid aliceblue;
+    border-top: none;
+    z-index: 0;
+}
+
+.tituloGaleriaBoleta img {
+    position: absolute;
+    top: 60px;
+    height: 600px;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+}
+
+.pagHeadBoleta {
+    background-color: #00000000;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 80px;
+    left: 280px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    width: 390px;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    background-color: aliceblue;
+    box-shadow: inset 2px 5px 10px rgba(5, 5, 5, 0.55);
+    flex-grow: 1; 
+    padding-left: 2.5rem;
+}
+
+.input::placeholder {
+    color: #777881;
+}
+
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    fill: #000000;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.upload-container {
+    text-align: center;
+}
+
+.upload-button {
+    display: inline-block;
+    background-color: #061127;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 13px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
