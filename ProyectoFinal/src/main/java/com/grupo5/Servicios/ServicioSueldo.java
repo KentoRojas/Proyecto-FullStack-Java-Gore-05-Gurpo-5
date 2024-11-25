@@ -1,5 +1,6 @@
 package com.grupo5.Servicios;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,7 @@ public class ServicioSueldo {
     }
 
     // Método para obtener sueldos por un rango de fechas para un usuario
-    public List<Sueldo> obtenerSueldosPorUsuarioYFecha(Usuario usuario, Date fechaInicio, Date fechaFin) {
+    public List<Sueldo> obtenerSueldosPorUsuarioYFecha(Usuario usuario, LocalDate  fechaInicio, LocalDate  fechaFin) {
         return repositorioSueldo.findByUsuarioAndFechaIngresoBetween(usuario, fechaInicio, fechaFin);
     }
 
@@ -56,7 +57,7 @@ public class ServicioSueldo {
         if (sueldoExistente != null) {
             sueldoExistente.setMonto(sueldoActualizado.getMonto());
             sueldoExistente.setFechaIngreso(sueldoActualizado.getFechaIngreso());
-            sueldoExistente.setFechaActualizacion(new Date());
+            sueldoExistente.setFechaActualizacion(LocalDate.now());
             return repositorioSueldo.save(sueldoExistente);
         }
         return null; // Retorna null si el sueldo no existe

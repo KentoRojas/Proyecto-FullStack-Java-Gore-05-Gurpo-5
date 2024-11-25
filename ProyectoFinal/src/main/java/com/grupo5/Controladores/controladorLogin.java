@@ -1,5 +1,7 @@
 package com.grupo5.Controladores;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,7 @@ public class ControladorLogin {
     // Procesar el login
     @PostMapping("/procesarLogin")
     public String procesarLogin(@ModelAttribute("usuario") Usuario usuario, Model modelo) {
-        Usuario usuarioExistente = repositorioUsuario.findByCorreo(usuario.getCorreo());
+        Optional<Usuario> usuarioExistente = repositorioUsuario.findByCorreo(usuario.getCorreo());
 
         if (usuarioExistente != null && usuarioExistente.getPassword().equals(usuario.getPassword())) {
             // Credenciales correctas

@@ -38,7 +38,7 @@ public class Gasto {
 
     // Ruta o URL de la imagen de la boleta
     @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres")
-    private String boleta;
+    private byte[] boleta;
 
     // Descripción adicional del gasto en la boleta
     @Column(length = 500)
@@ -89,11 +89,11 @@ public class Gasto {
         this.usuario = usuario;
     }
 
-    public String getBoleta() {
+    public @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres") @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres") @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres") byte[] getBoleta() {
         return boleta;
     }
-    public void setBoleta(String boleta) {
-        this.boleta = boleta;
+    public void setBoleta(byte[] bs) {
+        this.boleta = bs;
     }
 
     public String getDescripcion() {
