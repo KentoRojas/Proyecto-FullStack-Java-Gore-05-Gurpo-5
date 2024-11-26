@@ -1,0 +1,196 @@
+.paginaPresupuestoConpartido {
+    background-color: rgb(2, 2, 63);
+    height: 100vh;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.tituloPresupuestoCompartido img {
+    margin: 40px;
+    height: 100px;
+}
+
+
+.presupuestos-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.presupuestos-header {
+    position: relative;
+}
+
+.presupuestos-header h1 {
+    font-size: 2rem;
+}
+
+#presupuestos-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+}
+
+.presupuestos-search-bar {
+    margin: 20px 0;
+}
+
+#presupuestos-search {
+    padding: 5px;
+    width: 200px;
+}
+
+.presupuestos-search-btn,
+.presupuestos-crear-grupo-btn,
+.presupuestos-agregar-integrante-btn,
+.presupuestos-btn-crear,
+.presupuestos-btn-cancelar {
+    padding: 10px 20px;
+    background-color: #1D5B9B;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.presupuestos-search-btn:hover,
+.presupuestos-crear-grupo-btn:hover,
+.presupuestos-agregar-integrante-btn:hover,
+.presupuestos-btn-crear:hover,
+.presupuestos-btn-cancelar:hover {
+    background-color: #1a4978;
+}
+
+#presupuestos-formulario {
+    display: none;
+    margin-top: 90px;
+    background-color: #26496b;
+    padding: 30px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    z-index: 1000;
+}
+
+.presupuestos-formulario-contenedor {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.presupuestos-formulario-etiquetas {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex: 1;
+    text-align: right;
+}
+
+.presupuestos-formulario-etiquetas .presupuestos-label {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.presupuestos-formulario-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 2;
+}
+
+.presupuestos-formulario-inputs .presupuestos-input, 
+.presupuestos-integrantes-container {
+    padding: 10px;
+    border: 1px solid #1D5B9B;
+    border-radius: 5px;
+    background-color: white;
+    color: #182B44;
+}
+
+.presupuestos-integrantes-container {
+    display: flex;
+    gap: 10px;
+    padding: 0;
+}
+
+.presupuestos-integrantes-container .presupuestos-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+}
+
+.presupuestos-integrantes-container .presupuestos-agregar-integrante-btn {
+    margin: 0;
+    padding: 10px 15px;
+    background-color: #1D5B9B;
+    color: white;
+}
+
+#presupuestos-lista-integrantes {
+    margin-top: 5px;
+}
+
+.presupuestos-integrante-item {
+    background-color: #1D5B9B;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.presupuestos-integrante-item .presupuestos-eliminar {
+    color: #ff6b6b;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.presupuestos-botones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+#presupuestos-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+#presupuestos-grupos-creados {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.presupuestos-grupo-card {
+    background-color: #1D5B9B;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.presupuestos-grupo-card:hover {
+    background-color: #1a4978;
+}

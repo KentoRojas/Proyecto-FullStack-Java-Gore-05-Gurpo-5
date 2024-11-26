@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/*Pagina2*/
+.pag2 {
+    width: 100%;
+    height: 100vh;
+    color: aliceblue;
+    background-color: rgb(0, 45, 68);
+    border-radius:92px 0px 92px 0px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content-historial {
+    height: 90vh;
+    width: 50%;
+    text-align: center;
+    border-top: 21px solid aliceblue;
+    border-right: 20px solid aliceblue;
+    border-radius: 90px 90px 0px 0px;
+    z-index: 1;
+}
+.content-historial2 {
+    background-color: rgb(0, 45, 68);
+    width: 50%;
+    text-align: center;
+    border-bottom: 0px solid aliceblue;
+    border-radius: 0px 0px 90px 90px;
+    z-index: 2;
+}
+
+.borde {
+    position: absolute;
+    top: 1290px;
+    left: 821px;
+    width: 695px;
+    height: 652px;
+    background-color: rgba(255, 192, 203, 0);
+    border-bottom: 20px solid aliceblue;
+    border-left: 20px solid aliceblue;
+    border-radius: 0px 0px 90px 90px;
+}
+
+
+.historial {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.tituloHistorialGasto img {
+    height: 100px;
+    margin-top: 40px;
+    z-index: 2;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+}
+
+.cuadroHistorial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    background: #00808014; 
+    margin-bottom: 10px; 
+    padding: 15px 0px 15px 0px; 
+    border-radius: 8px; 
+    height: 50px;
+}
+
+.tituloGrafico img {
+    position: relative;
+    top: 680px;
+    height: 58px;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+}
