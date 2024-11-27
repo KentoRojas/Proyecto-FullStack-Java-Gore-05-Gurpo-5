@@ -142,4 +142,12 @@ public class ServicioGasto {
         }
         return null; // Retorna null si el gasto no existe
     }
+    
+    public Gasto guardarGasto(Gasto gasto) {
+        return repositorioGasto.save(gasto);
+    }
+    
+    public List<Gasto> obtenerTodos() {
+        return (List<Gasto>) repositorioGasto.findAll();
+    }
 }

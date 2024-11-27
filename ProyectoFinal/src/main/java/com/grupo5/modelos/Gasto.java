@@ -82,8 +82,8 @@ public class Gasto {
     public Categoria getTipo() {
         return tipo;
     }
-    public void setTipo(Categoria tipo) {
-        this.tipo = tipo;
+    public void setTipo(Categoria categoria) {
+        this.tipo = categoria;
     }
 
     public Usuario getUsuario() {

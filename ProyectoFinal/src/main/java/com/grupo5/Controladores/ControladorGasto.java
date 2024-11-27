@@ -2,16 +2,22 @@ package com.grupo5.Controladores;
 
 import com.grupo5.Servicios.ServicioGasto;
 import com.grupo5.Servicios.ServicioGrupo;
+import com.grupo5.modelos.Categoria;
 import com.grupo5.modelos.Gasto;
 import com.grupo5.modelos.Grupo;
 import com.grupo5.modelos.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -104,5 +110,47 @@ public class ControladorGasto {
             modelo.addAttribute("error", "Ocurrió un error al listar los gastos.");
             return "detalleGrupo"; // Devuelve a la misma vista con el mensaje de error
         }
+    }
+    
+	// Obtener la ruta desde el archivo de configuración
+    @Value("${gasto.imagenes.ruta}")
+    private String uploadDir;
+
+    @PostConstruct // Ejecuta este método al iniciar la aplicación
+    public void crearDirectorio() {
+        File directory = new File(uploadDir);
+        if (!directory.exists()) {
+            directory.mkdirs(); // Crea la carpeta si no existe
+            System.out.println("Directorio creado en: " + uploadDir);
+        }
+    }
+    private static final String UPLOAD_DIR = "D:/workspace/bootcamp/Spring/ProyectoGasto/imagenes";
+
+    @GetMapping
+    public List<Gasto> obtenerGastos() {
+        return servicioGasto.obtenerTodos();
+    }
+
+    @PostMapping
+    public Gasto crearGasto(@RequestParam("descripcion") String descripcion,
+                            @RequestParam("categoria") Categoria categoria,
+                            @RequestParam("monto") int monto,
+                            @RequestParam("fecha") String fecha,
+                            @RequestParam("imagen") MultipartFile imagen) throws IOException {
+
+        // Guardar imagen en sistema de archivos
+        String imagenPath = UPLOAD_DIR + "/" + imagen.getOriginalFilename();
+        File destino = new File(imagenPath);
+        imagen.transferTo(destino);
+
+        // Crear y guardar el gasto
+        Gasto gasto = new Gasto();
+        gasto.setDescripcion(descripcion);
+        gasto.setTipo(categoria);
+        gasto.setMonto(monto);
+        gasto.setFecha(LocalDate.parse(fecha));
+        gasto.setBoleta(imagenPath);
+
+        return servicioGasto.guardarGasto(gasto);
     }
 }
