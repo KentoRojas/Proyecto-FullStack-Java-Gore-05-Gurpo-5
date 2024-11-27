@@ -1,26 +1,23 @@
-document.getElementById('formRegisterBtn').addEventListener('click', function() {
-  document.getElementById('idForm').style.display = 'none';
-  document.getElementById('idForm1').style.display = 'flex';
-  document.querySelector('.haveAccount').style.display = 'block'
+document.addEventListener("DOMContentLoaded", () => {
+  const formLogin = document.getElementById("idForm");
+  const formRegister = document.getElementById("idForm1");
 
-  document.getElementById('backArrow').style.display = 'block';
-});
+  const toggleToRegister = document.getElementById("toggleToRegister");
+  const backArrow = document.getElementById("backArrow");
+  const backSesion = document.getElementById("backSesion");
 
+  // Muestra el formulario de registro y oculta el de inicio
+  toggleToRegister.addEventListener("click", () => {
+      formLogin.style.display = "none";
+      formRegister.style.display = "flex";
+  });
 
-document.getElementById('backArrow').addEventListener('click', function() {
-  document.getElementById('idForm').style.display = 'flex';
-  document.getElementById('idForm1').style.display = 'none';
-  document.querySelector('.haveAccount').style.display = 'none'
+  // Botón para volver al login (backArrow y backSesion)
+  const showLogin = () => {
+      formRegister.style.display = "none";
+      formLogin.style.display = "flex";
+  };
 
-  document.getElementById('backArrow').style.display = 'none';
-
-});
-
-document.getElementById('backSesion').addEventListener('click', function() {
-  document.getElementById('idForm').style.display = 'flex';
-  document.getElementById('idForm1').style.display = 'none';
-  document.querySelector('.haveAccount').style.display = 'none'
-
-  document.getElementById('backArrow').style.display = 'none';
-
+  backArrow.addEventListener("click", showLogin);
+  backSesion.addEventListener("click", showLogin);
 });

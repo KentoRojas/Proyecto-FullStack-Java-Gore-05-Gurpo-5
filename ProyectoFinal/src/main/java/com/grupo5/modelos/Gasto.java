@@ -1,11 +1,10 @@
 package com.grupo5.modelos;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Gastos")
@@ -17,14 +16,13 @@ public class Gasto {
     private Long idGasto;
 
     @NotNull(message = "El monto no puede estar vacío")
-    @DecimalMin(value = "0.0", inclusive = false, message = "El monto debe ser mayor que cero")
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal monto;
+    @Positive(message = "El monto debe ser mayor que cero")
+    @Column(nullable = false)
+    private Integer monto;
 
     @NotNull(message = "La fecha no puede estar vacía")
-    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private Date fecha;
+    private LocalDate fecha;
 
     // Relación con Categoria (Un gasto pertenece a una categoría)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,21 +34,27 @@ public class Gasto {
     @JoinColumn(name = "id_usuarios", nullable = false)
     private Usuario usuario;
 
+    // Relación con Grupo (Un gasto pertenece a un grupo)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_grupo", nullable = false)
+    private Grupo grupo;
+
     // Ruta o URL de la imagen de la boleta
     @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres")
-    private byte[] boleta;
+    private String boleta;
 
     // Descripción adicional del gasto en la boleta
     @Column(length = 500)
     private String descripcion;
 
     // Fecha de creación de la boleta
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaCreacionBoleta;
+    @NotNull(message = "La fecha de creación de la boleta no puede estar vacía")
+    @Column(nullable = false)
+    private LocalDate fechaCreacionBoleta;
 
     // Constructor vacío
     public Gasto() {
-        this.fechaCreacionBoleta = new Date(); // Se establece la fecha actual por defecto
+        this.fechaCreacionBoleta = LocalDate.now(); // Se establece la fecha actual por defecto
     }
 
     // Getters y Setters
@@ -61,17 +65,17 @@ public class Gasto {
         this.idGasto = idGasto;
     }
 
-    public BigDecimal getMonto() {
+    public Integer getMonto() {
         return monto;
     }
-    public void setMonto(BigDecimal monto) {
+    public void setMonto(Integer monto) {
         this.monto = monto;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -89,11 +93,18 @@ public class Gasto {
         this.usuario = usuario;
     }
 
-    public @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres") @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres") @Size(max = 255, message = "La ruta de la boleta no puede tener más de 255 caracteres") byte[] getBoleta() {
+    public Grupo getGrupo() {
+        return grupo;
+    }
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+    public String getBoleta() {
         return boleta;
     }
-    public void setBoleta(byte[] bs) {
-        this.boleta = bs;
+    public void setBoleta(String boleta) {
+        this.boleta = boleta;
     }
 
     public String getDescripcion() {
@@ -103,11 +114,10 @@ public class Gasto {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaCreacionBoleta() {
+    public LocalDate getFechaCreacionBoleta() {
         return fechaCreacionBoleta;
     }
-    public void setFechaCreacionBoleta(Date fechaCreacionBoleta) {
+    public void setFechaCreacionBoleta(LocalDate fechaCreacionBoleta) {
         this.fechaCreacionBoleta = fechaCreacionBoleta;
     }
 }
-
