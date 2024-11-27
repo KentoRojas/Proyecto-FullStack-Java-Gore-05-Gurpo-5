@@ -5,49 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Página de Inicio</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
 <body>
     <!-- Barra de navegación -->
     <nav>
         <ul>
-            <li><a href="${pageContext.request.contextPath}/inicio">Inicio</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a></li>
+            <li><a href="/inicio">Inicio</a></li>
+            <li><a href="/grupos">Gestión de Grupos</a></li> <!-- Link para ir a la vista de grupos -->
+            <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
-    <div class="container">
-        <!-- Bienvenida al usuario -->
-        <h2>Bienvenido, ${usuarioLogueado.nombre}!</h2>
+    <div>
+        <!-- Mostrar el sueldo acumulado -->
+        <h2>Sueldo Acumulado:</h2>
+        <p>${sueldoAcumulado}</p>
 
-        <!-- Mostrar el último sueldo ingresado -->
-        <div>
-            <h2>Último Sueldo:</h2>
-            <p>${sueldo != null ? sueldo.monto : "Aún no has registrado un sueldo."}</p>
-        </div>
+        <!-- Formulario para registrar un nuevo monto -->
+        <h2>Registrar Monto Adicional</h2>
+        <form action="${pageContext.request.contextPath}/sueldo" method="post">
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" name="monto" step="0.01" required><br><br>
 
-        <!-- Formulario para registrar un nuevo sueldo -->
-        <div>
-            <h2>Registrar Sueldo</h2>
-
-            <!-- Mostrar mensajes de error si existen -->
-            <c:if test="${not empty error}">
-                <div style="color: red;">${error}</div>
-            </c:if>
-
-            <form action="${pageContext.request.contextPath}/sueldo" method="post">
-                <label for="monto">Monto:</label>
-                <input type="number" id="monto" name="monto" step="0.01" required><br><br>
-
-                <button type="submit">Registrar</button>
-            </form>
-        </div>
+            <button type="submit">Registrar</button>
+        </form>
     </div>
 </body>
-<<<<<<< HEAD
 </html>
-
-    
-=======
-</html>
->>>>>>> e935239 (Agregando vista de inicio al proyecto)

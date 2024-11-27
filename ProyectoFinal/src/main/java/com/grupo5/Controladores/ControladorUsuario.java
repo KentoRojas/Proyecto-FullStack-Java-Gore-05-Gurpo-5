@@ -1,5 +1,7 @@
 package com.grupo5.Controladores;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +34,11 @@ public class ControladorUsuario {
         }
 
         // Obtener el último sueldo ingresado por el usuario
-        Sueldo ultimoSueldo = servicioSueldo.obtenerUltimoSueldoPorUsuario(usuario);
-        modelo.addAttribute("sueldo", ultimoSueldo);
+        BigDecimal sueldoAcumulado = servicioSueldo.obtenerSueldoAcumulado(usuario);
+        modelo.addAttribute("sueldoAcumulado", sueldoAcumulado);
 
-        return "inicio";
+        return "inicio"; // Retorna la vista "inicio.jsp"
     }
-
 
     // Mostrar la vista de login/registro
     @GetMapping("/")

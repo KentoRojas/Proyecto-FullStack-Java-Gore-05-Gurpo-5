@@ -25,18 +25,19 @@ public class ServicioCategoria {
 		return repositorioCategoria.save(categoria);
 	}
 	
-	// Método para obtener una categoria por su ID
-	public Categoria obtenerCategoriaPorID(Long id) {
-		Optional<Categoria> categoria = repositorioCategoria.findById(id);
-		return categoria.orElse(null);
-	}
+	// Obtener categoría por ID con validación
+    public Categoria obtenerCategoriaPorID(Long id) {
+        return repositorioCategoria.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("La categoría con ID " + id + " no existe."));
+    }
 	
-	// Método para obtener una categoría por su nombre
+    // Obtener categoría por nombre con validación
     public Categoria obtenerCategoriaPorNombre(String nombre) {
-        return repositorioCategoria.findByNombreCategoria(nombre).orElse(null);
+        return repositorioCategoria.findByNombreCategoria(nombre)
+            .orElseThrow(() -> new IllegalArgumentException("La categoría con nombre " + nombre + " no existe."));
     }
 
-    // Método para obtener todas las categorías
+    // Obtener todas las categorías
     public List<Categoria> obtenerTodasLasCategorias() {
         return (List<Categoria>) repositorioCategoria.findAll();
     }

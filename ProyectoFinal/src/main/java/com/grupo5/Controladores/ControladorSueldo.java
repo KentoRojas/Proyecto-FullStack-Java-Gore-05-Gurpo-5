@@ -1,11 +1,14 @@
 package com.grupo5.Controladores;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo5.Servicios.ServicioSueldo;
 import com.grupo5.modelos.Sueldo;
@@ -18,25 +21,18 @@ public class ControladorSueldo {
 
 	@Autowired
 	private ServicioSueldo servicioSueldo;
-<<<<<<< HEAD
-	
 
-    // Procesar el registro de un sueldo
-=======
-
-	// Procesar el registro de un sueldo
->>>>>>> e935239 (Agregando vista de inicio al proyecto)
-    @PostMapping("/sueldo")
-    public String procesarRegistroSueldo(@ModelAttribute("sueldo") Sueldo sueldo, HttpSession session, Model modelo) {
+	@PostMapping("/sueldo")
+    public String procesarRegistroOSumaSueldo(@RequestParam("monto") BigDecimal monto, HttpSession session, Model modelo) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) {
             return "redirect:/"; // Redirige al login si no hay usuario en sesión
         }
 
-        // Asociar el sueldo con el usuario autenticado
-        sueldo.setUsuario(usuario);
-        servicioSueldo.registrarSueldo(sueldo);
+        // Registrar o sumar el monto al sueldo existente
+        servicioSueldo.registrarOSumarSueldo(usuario, monto);
 
-        return "redirect:/inicio"; // Redirige a la vista de inicio después de registrar el sueldo
+        // Redirigir a la vista de inicio
+        return "redirect:/inicio";
     }
 }

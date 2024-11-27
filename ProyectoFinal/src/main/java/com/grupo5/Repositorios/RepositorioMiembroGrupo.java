@@ -1,31 +1,26 @@
 package com.grupo5.Repositorios;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
 import com.grupo5.modelos.Grupo;
 import com.grupo5.modelos.MiembroGrupo;
-import com.grupo5.modelos.MiembroGrupoId;
 import com.grupo5.modelos.Usuario;
+import com.grupo5.modelos.MiembroGrupoId;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
-public interface RepositorioMiembroGrupo extends CrudRepository<MiembroGrupo, MiembroGrupoId> {
-
-    // Buscar todos los miembros de un grupo específico
-    List<MiembroGrupo> findByGrupo(Grupo grupo);
-
-    // Buscar todos los grupos a los que pertenece un usuario
+public interface RepositorioMiembroGrupo extends JpaRepository<MiembroGrupo, MiembroGrupoId> {
+	
     List<MiembroGrupo> findByUsuario(Usuario usuario);
 
-    // Buscar todos los miembros de un grupo con un rol específico
-    List<MiembroGrupo> findByGrupoAndRol(Grupo grupo, MiembroGrupo.Rol rol);
+    // Obtener todos los miembros de un grupo
+    List<MiembroGrupo> findByGrupo(Grupo grupo);
 
-    // Buscar si un usuario es administrador de un grupo específico
-    boolean existsByUsuarioAndGrupoAndRol(Usuario usuario, Grupo grupo, MiembroGrupo.Rol rol);
+    // Buscar un miembro específico en un grupo
+    MiembroGrupo findByGrupoAndUsuario(Grupo grupo, Usuario usuario);
 
-    // Buscar si un usuario ya está en un grupo
-    boolean existsByUsuarioAndGrupo(Usuario usuario, Grupo grupo);
-
+    // Verificar si un miembro pertenece a un grupo por su ID compuesto
+    boolean existsById(MiembroGrupoId id);
 }
