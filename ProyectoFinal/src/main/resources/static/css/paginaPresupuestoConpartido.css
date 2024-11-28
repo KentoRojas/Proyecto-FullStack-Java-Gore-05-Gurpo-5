@@ -1,0 +1,150 @@
+.paginaPresupuestoConpartido {
+    background-color: rgb(2, 2, 63);
+    height: 100vh;
+    width: 100%;
+    margin-top: 20px;
+	border-radius: 92px;
+}
+
+.tituloPresupuestoCompartido img {
+    margin: 60px 40px;
+    height: 100px;
+}
+
+#crearGrupo {
+    position: relative;
+    top: -160px;
+    left: 700px;
+    margin-left: 30px;
+}
+
+#presupuestos-crear-grupo {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+
+.presupuestos-formulario-crear {
+    margin-top: 20px;
+}
+
+.presupuestos-grupo-input {
+    margin-bottom: 15px;
+}
+
+.presupuestos-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.presupuestos-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #1D5B9B;
+    border-radius: 5px;
+}
+
+.presupuestos-boton-crear {
+    padding: 10px 20px;
+    background-color: #1D5B9B;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.presupuestos-boton-crear:hover {
+    background-color: #1a4978;
+}
+
+.presupuestos-mensaje-error {
+    color: red;
+    margin-top: 10px;
+}
+
+.presupuestos-mensaje-exito {
+    color: green;
+    margin-top: 10px;
+}
+
+#presupuestos-lista-grupos {
+    margin-top: 30px;
+}
+
+.presupuestos-contenedor-enlaces {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.presupuestos-enlace-grupo {
+    background-color: #1D5B9B;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.presupuestos-enlace-grupo:hover {
+    background-color: #1a4978;
+}
+
+#listaGrupos {
+    position: relative;
+    top: -150px;
+    margin: 50px;
+}
+
+.grupoInputCrear {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.grupoInputCrear input {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    background-color: aliceblue;
+    box-shadow: inset 2px 5px 10px rgba(5, 5, 5, 0.55);
+    flex-grow: 1; 
+}
+
+.btnCrearGrupo {
+    margin-top: 10px;
+    position: relative;
+    padding: 5px 25px;
+    font-size: 13px;
+    color: #000000;
+    background: linear-gradient(to bottom, rgb(190, 191, 191), aliceblue);
+    border-radius: 9999px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+
+#listaGrupos h3 {
+	margin-bottom: 20px;
+}
+
+.grupo-enlace {
+	margin-top: 20px;
+	margin-left: 20px;
+	gap: 10px;
+    text-decoration: none;
+	color: aliceblue;
+	cursor: pointer;
+}
